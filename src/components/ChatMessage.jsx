@@ -3,7 +3,11 @@ import { Image, Bot, Send, ChevronRight, User, LogOut } from 'lucide-react'
 import AudioPlayer from '@/components/AudioPlayer.jsx'
 import QuantityInput from '@/components/QuantityInput.jsx'
 
-import audio1 from '@/audio/audio-1.mp3'
+import audio2 from '@/audio/audio-2.mp3'
+import audio3 from '@/audio/audio-3.mp3'
+import audio4 from '@/audio/audio-4.mp3'
+import audio5 from '@/audio/audio-5.mp3'
+import audio6 from '@/audio/audio-6.mp3'
 import deliveryMan from '@/assets/delivery-man.png'
 import { useNavigate } from 'react-router-dom'
 import { Separator } from '@/components/ui/separator'
@@ -71,7 +75,7 @@ const ChatMessage = ({ message, setChatMessages, chatMessages }) => {
         ...prevMessages,
         {
           order: 2,
-          audio: audio1,
+          audio: audio2,
           text: `Ótimo, parece que você quer reciclar ${response.text}. Estou certo?`,
           agent: true,
         },
@@ -103,7 +107,7 @@ const ChatMessage = ({ message, setChatMessages, chatMessages }) => {
       },
       {
         order: 4,
-        audio: audio1,
+        audio: audio3,
         text: `Agora me conte, quantos(as) ${responseIA} você deseja reciclar?`,
         agent: true,
       },
@@ -120,7 +124,7 @@ const ChatMessage = ({ message, setChatMessages, chatMessages }) => {
       },
       {
         order: 6,
-        audio: audio1,
+        audio: audio4,
         text: 'Perfeito! Coletei todos os dados necessários 😉. Ah, e não se esqueça: Para que a coleta ocorra e seja efetiva, os materiais devem estar devidamente separados, higienizados e sem os rótulos. ',
         agent: true,
       },
@@ -137,7 +141,7 @@ const ChatMessage = ({ message, setChatMessages, chatMessages }) => {
       },
       {
         order: 8,
-        audio: audio1,
+        audio: audio5,
         text: 'Esse é o entregador mais próximo de você. Deseja agendar a retirada?',
         agent: true,
         deliveryMan: true,
@@ -155,7 +159,7 @@ const ChatMessage = ({ message, setChatMessages, chatMessages }) => {
       },
       {
         order: 10,
-        audio: audio1,
+        audio: audio6,
         text: 'Coleta agendada! José passará em seu endereço no próximo dia útil para buscar seus produtos.',
         agent: true,
       },
