@@ -17,7 +17,9 @@ import { toast } from 'react-toastify'
 import { GoogleGenAI, createUserContent, createPartFromUri } from '@google/genai'
 import { Backdrop, CircularProgress } from '@mui/material'
 
-const ai = new GoogleGenAI({ apiKey: 'AIzaSyDbKxnUlCzpYg-_SmEYjshrF51O48WZB4M' })
+const ai = new GoogleGenAI({
+  apiKey: 'AIzaSyDbKxnUlCzpYg-_SmEYjshrF51O48WZB4M',
+})
 
 var responseIA = ''
 
@@ -49,7 +51,7 @@ const ChatMessage = ({ message, setChatMessages, chatMessages }) => {
     responseIA = ''
 
     const textPrompt =
-      'Diga apenas o principal objeto reciclável na imagem. Se não encontrar nenhum objeto reciclável, retorne "0".'
+      'Diga apenas o principal objeto reciclável na imagem, em português. Se não encontrar nenhum objeto reciclável, retorne "0".'
 
     setLoadingIA(true)
 
@@ -62,7 +64,7 @@ const ChatMessage = ({ message, setChatMessages, chatMessages }) => {
         contents: [createUserContent([textPrompt, createPartFromUri(image.uri, image.mimeType)])],
       })
 
-      if (response.text === '0') {
+      if (response.text === '0' || response.text === '0\n') {
         toast.warning(
           'Não foi possível identificar o material reciclável na imagem, favor tente novamente com outra imagem!'
         )
@@ -219,6 +221,7 @@ const ChatMessage = ({ message, setChatMessages, chatMessages }) => {
                 <button
                   className="bg-blue-600 text-white p-5 rounded-full flex justify-center gap-2"
                   onClick={handleConfirmPhoto}
+                  disabled={loadingIA}
                 >
                   <Send size={50} />
                 </button>
@@ -271,7 +274,7 @@ const ChatMessage = ({ message, setChatMessages, chatMessages }) => {
           <label
             htmlFor="file-input"
             className="group flex gap-1 flex-1 items-center justify-center rounded-lg bg-white border p-2"
-            onClick={() => null}
+            onClick={() => handleFileChange()}
           >
             <Image />
             Enviar nova foto
@@ -298,7 +301,7 @@ const ChatMessage = ({ message, setChatMessages, chatMessages }) => {
           <label
             htmlFor="file-input"
             className="group flex gap-1 flex-1 items-center justify-center rounded-lg bg-white border p-2"
-            onClick={() => null}
+            onClick={() => handleFileChange()}
           >
             <Image />
             Enviar nova foto
