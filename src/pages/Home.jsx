@@ -1,16 +1,13 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import LayoutDefault from "@/components/LayoutDefault.jsx";
-import MenuFixed from "@/components/MenuFixed.jsx";
+import React from 'react'
+import LayoutDefault from '@/components/LayoutDefault.jsx'
+import { CircleDashed } from 'lucide-react'
 
-const Home = () => {
-  const navigate = useNavigate();
-
+function Home() {
   return (
-    <LayoutDefault>
-      <MenuFixed />
+    <LayoutDefault title="App" icon={CircleDashed}>
+      <div>Home</div>
     </LayoutDefault>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

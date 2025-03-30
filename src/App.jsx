@@ -1,12 +1,8 @@
-import React from "react";
-import Router from "./routes.jsx";
+import './App.css'
+import Router from './routes'
 
 function App() {
-  return (
-    <div className="min-h-screen flex flex-col">
-      <Router />
-    </div>
-  );
+  return <Router />
 }
 
-export default App;
+export default App
