@@ -14,7 +14,7 @@ const LayoutChat = ({ children }) => {
 
   return (
     <div className="flex flex-col min-h-screen bg-[#F4F5FC]">
-      <div className="sticky top-0 w-full p-3 bg-white flex items-center justify-between z-9999">
+      <div className="sticky top-0 w-full p-3 bg-white flex items-center justify-between z-99">
         <div onClick={() => handleNavigation('/')}>
           <ArrowLeft />
         </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Image, Bot, Check, ChevronRight, User, LogOut } from 'lucide-react'
+import { Image, Bot, Send, ChevronRight, User, LogOut } from 'lucide-react'
 import AudioPlayer from '@/components/AudioPlayer.jsx'
 import QuantityInput from '@/components/QuantityInput.jsx'
 
@@ -14,6 +14,8 @@ import { GoogleGenAI, createUserContent, createPartFromUri } from '@google/genai
 import { Backdrop, CircularProgress } from '@mui/material'
 
 const ai = new GoogleGenAI({ apiKey: 'AIzaSyDbKxnUlCzpYg-_SmEYjshrF51O48WZB4M' })
+
+var responseIA = ''
 
 const ChatMessage = ({ message, setChatMessages, chatMessages }) => {
   const [photo, setPhoto] = useState(null)
@@ -40,6 +42,8 @@ const ChatMessage = ({ message, setChatMessages, chatMessages }) => {
   const processImage = async () => {
     if (!photo) return
 
+    responseIA = ''
+
     const textPrompt =
       'Diga apenas o principal objeto reciclável na imagem. Se não encontrar nenhum objeto reciclável, retorne "0".'
 
@@ -59,6 +63,8 @@ const ChatMessage = ({ message, setChatMessages, chatMessages }) => {
           'Não foi possível identificar o material reciclável na imagem, favor tente novamente com outra imagem!'
         )
         return
+      } else {
+        responseIA = response.text
       }
 
       setChatMessages((prevMessages) => [
@@ -98,7 +104,7 @@ const ChatMessage = ({ message, setChatMessages, chatMessages }) => {
       {
         order: 4,
         audio: audio1,
-        text: 'Agora me conte, quantas garrafas de plástico você deseja reciclar?',
+        text: `Agora me conte, quantos(as) ${responseIA} você deseja reciclar?`,
         agent: true,
       },
     ])
@@ -207,10 +213,10 @@ const ChatMessage = ({ message, setChatMessages, chatMessages }) => {
               <img src={photo} alt="Preview" className="max-w-full h-auto rounded-3xl" />
               <div className="absolute bottom-4 flex items-center flex-col justify-between mt-4 w-full max-w-sm px-4">
                 <button
-                  className="bg-green-500 text-white p-3 rounded-full"
+                  className="bg-blue-600 text-white p-5 rounded-full flex justify-center gap-2"
                   onClick={handleConfirmPhoto}
                 >
-                  <Check size={50} />
+                  <Send size={50} />
                 </button>
 
                 <input
